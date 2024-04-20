@@ -52,12 +52,12 @@ desired_lane = 0.0 #m
 while not rospy.is_shutdown():
    desired_v = 0.0
    desired_lane = 0.0
-   Angles_Act = quaternion_to_euler(real_position.orientation.x, real_position.orientation.y, real_position.orientation.z, real_position.orientation.w)
-   Yaw_act = Angles_Act[0] 
-   actual_pose = [real_position.position.x, real_position.position.y,Yaw_act]
+   orientation = quaternion_to_euler(real_position.orientation.x, real_position.orientation.y, real_position.orientation.z, real_position.orientation.w)
+   yaw = orientation[0] 
+   actual_pose = [real_position.position.x, real_position.position.y,yaw]
    x_pos=actual_pose[0]
    while x_pos < x_pos_des:
-         actual_pose = [real_position.position.x, real_position.position.y,Yaw_act]
+         actual_pose = [real_position.position.x, real_position.position.y,yaw]
          x_pos=actual_pose[0]
          if x_pos < 3.0:
             desired_v = max_speed

@@ -49,7 +49,7 @@
     </node>
 
     <node pkg="ackermann_vehicle_navigation" name="Autonomous_Systems_MS_3_CLR_Alg_2_Lateral_Team_21" type="Autonomous_Systems_MS_3_CLR_Alg_2_Lateral_Team_21.py" output="screen">
-      <param name="Wheel_base" value="0.4239"/> 
+      <param name="Wheel_base" value="0.4239"/>
     </node>
   
     <node pkg="ackermann_vehicle_navigation" name="Autonomous_Systems_MS_3_CLR_Alg_1_Speed_Team_21" type="Autonomous_Systems_MS_3_CLR_Alg_1_Speed_Team_21.py" output="screen">
