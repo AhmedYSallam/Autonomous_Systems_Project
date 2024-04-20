@@ -58,13 +58,13 @@ desired_v = 0
 
 while not rospy.is_shutdown():
   start_t = time.time()
+  orientation = quaternion_to_euler(real_position.orientation.x, real_position.orientation.y, real_position.orientation.z, real_position.orientation.w)
+  yaw = orientation[0] 
+  actual_pose = [real_position.position.x, real_position.position.y,yaw]
   actual_velocity = real_speed.linear.x
-  Angles_Act = quaternion_to_euler(real_position.orientation.x, real_position.orientation.y, real_position.orientation.z, real_position.orientation.w)
-  Yaw_act = Angles_Act[0] 
-  Pos_Act = [real_position.position.x, real_position.position.y,Yaw_act]
   v = Speed_Control(desired_v,actual_velocity,t)
   print('actual_velocity = '+str(actual_velocity))
-  print('actual_pose = '+str(Pos_Act))
+  print('actual_pose = '+str(actual_pose))
   pub1.publish(v)	
   rate.sleep()		
   end_t = time.time()

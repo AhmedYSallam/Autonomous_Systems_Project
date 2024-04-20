@@ -28,16 +28,13 @@ def quaternion_to_euler(x, y, z, w):
 def stanley_controller(desired_lane,actual_pose,actual_velocity):
   kv = 3
   global wheel_base
-  
   lane = actual_pose[0] + np.sign(actual_velocity)
   Lookahead_pnt = [lane,desired_lane]
   dx = Lookahead_pnt[0]-(actual_pose[0]+wheel_base*np.cos(actual_pose[2]))
   dy = Lookahead_pnt[1]-(actual_pose[1]+wheel_base*np.sin(actual_pose[2]))
-  L_d = np.sqrt((dx)**2 + (dy)**2)
-  
-  th_p = 0 - actual_pose[2] 
+  thetaP = 0 - actual_pose[2] 
   try:
-    steering = th_p + np.arctan(((kv*dy)/(actual_velocity)))
+    steering = thetaP + np.arctan(((kv*dy)/(actual_velocity)))
   except:
     steering = 0
   if(abs(steering) >= np.radians(30)):
@@ -68,9 +65,9 @@ real_position = Pose()
 
 while not rospy.is_shutdown():
 
-  actual_velocity = real_speed.linear.x
   orientation = quaternion_to_euler(real_position.orientation.x, real_position.orientation.y, real_position.orientation.z, real_position.orientation.w)
-  yaw = orientation[0] 
+  yaw = orientation[0]
+  actual_velocity = real_speed.linear.x
   actual_pose = [real_position.position.x, real_position.position.y,yaw]
   steering = stanley_controller(desired_lane,actual_pose,actual_velocity)
   pub1.publish(steering)	
