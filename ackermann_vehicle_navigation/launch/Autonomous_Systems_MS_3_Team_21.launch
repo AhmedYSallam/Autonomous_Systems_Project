@@ -42,7 +42,7 @@
     
     <node pkg="ackermann_vehicle_navigation" name="planner" type="planner.py" output="screen">
       <param name="x_desired" value="13.0"/>
-      <param name="max_speed" value="2.0"/>
+      <param name="max_speed" value="1.0"/>
       <param name="min_speed" value="0.5"/>
       <param name="lane_1_desired" value="0.0"/>
       <param name="lane_2_desired" value="1.0"/>
@@ -56,6 +56,9 @@
     </node>
     
     <node pkg="ackermann_vehicle_navigation" name="ackermann_cmd_data_fuser" type="ackermann_cmd_data_fuser.py" output="screen">
+    </node>
+
+    <node pkg="ackermann_vehicle_navigation" name="ekf" type="ekf.py" output="screen">
     </node>
 
     <node name="rqt_gui" pkg="rqt_gui" type="rqt_gui" args="--standalone rqt_graph" output="screen"/> 
